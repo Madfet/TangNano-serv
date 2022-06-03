@@ -19,8 +19,9 @@ So if you replace `0042c293` with ` 0012c293`, you get `xori t0, t0, 1`.
 
 This value corresponds to each color of the RGB LED, so it flashes blue by default and red after the change. `0022c293` is green.
 
-## Build
+## Build (witout IDE)
 
+(This is not working yet)
 Download the GoWin IDE and extract it to a directory somewhere (eg `$ HOME / gowin / 1.9.202`).
 
 Set the extracted directory as `$ GOWIN_HOME` and add ` $ GOWIN_HOME / IDE / bin: $ GOWIN_HOME / Programmer / bin` to the path.
