@@ -21,7 +21,6 @@ This value corresponds to each color of the RGB LED, so it flashes blue by defau
 
 ## Build (witout IDE)
 
-(This is not working yet)
 Download the GoWin IDE and extract it to a directory somewhere (eg `$ HOME / gowin / 1.9.202`).
 
 Set the extracted directory as `$ GOWIN_HOME` and add ` $ GOWIN_HOME / IDE / bin: $ GOWIN_HOME / Programmer / bin` to the path.
@@ -33,6 +32,8 @@ export PATH=$GOWIN_HOME/IDE/bin:$GOWIN_HOME/Programmer/bin:$PATH
 Set the license. Reference: [https://qiita.com/ciniml/items/bb9723673c91d8374b63] (https://qiita.com/ciniml/items/bb9723673c91d8374b63)
 
 Clone this repository and build it with make.
+
+(!!! make method is not working yet !!!)
 
 ```bash
 git clone --recursive https://github.com/ciniml/tn_serv
