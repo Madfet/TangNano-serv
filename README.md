@@ -4,7 +4,7 @@
 
 Designed to run RISC-V CPU core `SERV` with Tang Nano.
 
-## Function
+## Firmware Description
 
 `sw/blinky.hex` Is a program that runs on SERV. The constant of blinky.hex attached to SERV is modified according to the design.
 
