@@ -1,6 +1,7 @@
-module tn_picorv32_top (
+  module tn_serv_top (
     input  wire clk,
     input  wire resetn,
+    input  wire sw_b,
     output wire [2:0] gpio
 );
     logic        i_rst;
@@ -106,38 +107,27 @@ module tn_picorv32_top (
 
     ram32 #(
         .INITIAL_FILE("../sw/blinky.hex"),
-        .RAM_SIZE(64)
-    ) iram (
+        .RAM_SIZE(1024*4)
+    )
+    
+    iram (
         .clk(clk),
         .resetn(resetn),
-        .addr(o_ibus_adr[9:2]),
+        .addr(o_ibus_adr[11:2]),
         .ce(o_ibus_cyc),
-        .we(0),
+        .we(o_dbus_we),
         .data_in(0),
         .data_out(i_ibus_rdt)
     );
 
     always_ff @(posedge clk) i_ibus_ack <= !resetn ? 0 : o_ibus_cyc && !i_ibus_ack;
 
-    // ram32_16 #(
-    //     .RAM_SIZE(64)
-    // ) dram (
-    //     .clk(clk),
-    //     .resetn(resetn),
-    //     .adr(o_dbus_adr),
-    //     .dat(o_dbus_dat),
-    //     .sel(o_dbus_sel),
-    //     .we (o_dbus_we ),
-    //     .cyc(o_dbus_cyc),
-    //     .rdt(i_dbus_rdt),
-    //     .ack(i_dbus_ack)
-    // );
-    
     always_ff @(posedge clk) i_dbus_ack <= !resetn ? 0 : o_dbus_cyc && !i_dbus_ack;
     
     always_ff @(posedge clk) begin
         if( o_dbus_cyc && o_dbus_we && o_dbus_adr[8] ) begin
             gpio_out <= o_dbus_dat;
+            i_dbus_rdt <= sw_b;
         end
     end
 endmodule
