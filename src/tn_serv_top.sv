@@ -105,18 +105,16 @@
         rf_rdata <= rf_mem[rf_raddr];
     end
 
-    ram32 #(
+    rom32 #(
         .INITIAL_FILE("../sw/blinky.hex"),
-        .RAM_SIZE(1024*4)
+        .ROM_SIZE(1024*4)
     )
     
-    iram (
+    irom (
         .clk(clk),
         .resetn(resetn),
         .addr(o_ibus_adr[11:2]),
         .ce(o_ibus_cyc),
-        .we(o_dbus_we),
-        .data_in(0),
         .data_out(i_ibus_rdt)
     );
 
