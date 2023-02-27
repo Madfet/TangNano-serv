@@ -7,14 +7,14 @@ SIZE   =$(CROSS_COMPILE)size
 OBJCOPY=$(CROSS_COMPILE)objcopy
 OBJDUMP=$(CROSS_COMPILE)objdump
 
-all:
+all: blinky.s blinky.o blinky.elf blinky.bin blinky.hex
 
 clean:
-	rm -f *.elf *.bin *.hex
+	rm -f *.o *.elf *.bin *.hex
 
 %.o: %.s	
 #	riscv32-unknown-elf-as -march=rv32i -mabi=ilp32 $< -o $@
-	$(AS) -march=rv32i -mabi=ilp32 $< -o $@
+	$(AS) -march=rv32i -mabi=ilp32 -T link.ld $< -o $@
 
 %.elf: %.o
 	$(LD) $< -o $@
